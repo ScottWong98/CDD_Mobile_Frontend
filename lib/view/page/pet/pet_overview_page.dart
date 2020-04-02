@@ -85,7 +85,23 @@ class _PetOverviewPageState extends State<PetOverviewPage> {
                       IconButton(
                         icon: Icon(Icons.settings),
                         color: Colors.white,
-                        onPressed: () {},
+                        onPressed: () {
+                          showDialog(
+                            context: context,
+                            builder: (context) => AlertDialog(
+                              title: Text("提示"),
+                              content: Text("这是设置按钮"),
+                              actions: <Widget>[
+                                FlatButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: Text('确认'),
+                                ),
+                              ],
+                            ),
+                          );
+                        },
                       )
                     ],
                   ),

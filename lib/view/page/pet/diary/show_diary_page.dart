@@ -15,6 +15,21 @@ class ShowDiaryPage extends StatelessWidget {
             icon: Icon(Icons.edit),
             onPressed: () {
               print("press edit button");
+              showDialog(
+                context: context,
+                builder: (context) => AlertDialog(
+                  title: Text("提示"),
+                  content: Text("这是编辑日记按钮"),
+                  actions: <Widget>[
+                    FlatButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: Text('确认'),
+                    ),
+                  ],
+                ),
+              );
             },
           )
         ],
