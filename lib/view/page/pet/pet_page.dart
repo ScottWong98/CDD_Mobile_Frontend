@@ -1,4 +1,4 @@
-import 'package:cdd_mobile_frontend/view/page/pet/page_overview_page.dart';
+import 'package:cdd_mobile_frontend/view/page/pet/pet_overview_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -21,7 +21,7 @@ class PetPage extends StatelessWidget {
             print("click button in pet page....");
             Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (context) => PageOverviewPage(),
+                builder: (context) => PetOverviewPage(),
               ),
             );
           },

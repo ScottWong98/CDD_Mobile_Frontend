@@ -1,15 +1,16 @@
+import 'package:cdd_mobile_frontend/view/page/pet/diary/diary_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
-class PageOverviewPage extends StatefulWidget {
-  PageOverviewPage({Key key}) : super(key: key);
+class PetOverviewPage extends StatefulWidget {
+  PetOverviewPage({Key key}) : super(key: key);
 
   @override
-  _PageOverviewPageState createState() => _PageOverviewPageState();
+  _PetOverviewPageState createState() => _PetOverviewPageState();
 }
 
-class _PageOverviewPageState extends State<PageOverviewPage> {
+class _PetOverviewPageState extends State<PetOverviewPage> {
   // TODO: For change image in the future
   List<LinearGradient> _colors = [
     LinearGradient(
@@ -196,7 +197,7 @@ class GridDashboard extends StatelessWidget {
             print("Tab diary");
             Navigator.of(context).push(
               MaterialPageRoute(
-                builder: null,
+                builder: (context) => DiaryPage(),
               ),
             );
           }),
