@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class ProfilePage extends StatelessWidget {
-  const ProfilePage({Key key}) : super(key: key);
+class UserPage extends StatelessWidget {
+  const UserPage({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +13,7 @@ class ProfilePage extends StatelessWidget {
         elevation: 0,
       ),
       body: Center(
-        child: Text("Profile Page"),
+        child: Text("User Page"),
       ),
     );
   }

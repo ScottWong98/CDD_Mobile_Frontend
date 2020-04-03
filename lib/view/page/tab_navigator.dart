@@ -1,6 +1,6 @@
 import 'package:cdd_mobile_frontend/view/page/community/community_page.dart';
 import 'package:cdd_mobile_frontend/view/page/pet/pet_page.dart';
-import 'package:cdd_mobile_frontend/view/page/profile/profile_page.dart';
+import 'package:cdd_mobile_frontend/view/page/user/user_page.dart';
 import 'package:cdd_mobile_frontend/view/page/wiki/wiki_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +9,7 @@ List<Widget> pages = <Widget>[
   PetPage(),
   WikiPage(),
   CommunityPage(),
-  ProfilePage(),
+  UserPage(),
 ];
 
 class TabNavigator extends StatefulWidget {
