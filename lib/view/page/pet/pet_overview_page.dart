@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class PetOverviewPage extends StatefulWidget {
-  PetOverviewPage({Key key}) : super(key: key);
+  final String name;
+  PetOverviewPage({Key key, this.name}) : super(key: key);
 
   @override
   _PetOverviewPageState createState() => _PetOverviewPageState();
@@ -29,6 +30,7 @@ class _PetOverviewPageState extends State<PetOverviewPage> {
 
   @override
   Widget build(BuildContext context) {
+    print("name: ${widget.name}");
     return Scaffold(
       body: Column(
         children: <Widget>[
@@ -65,7 +67,7 @@ class _PetOverviewPageState extends State<PetOverviewPage> {
                         icon: Icon(Icons.arrow_back),
                         color: Colors.white,
                         onPressed: () {
-                          Navigator.of(context).pop();
+                          Navigator.of(context).pop("This is something");
                         },
                       ),
                       Expanded(
@@ -73,7 +75,7 @@ class _PetOverviewPageState extends State<PetOverviewPage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             Text(
-                              "Pet Name",
+                              widget.name,
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 20,

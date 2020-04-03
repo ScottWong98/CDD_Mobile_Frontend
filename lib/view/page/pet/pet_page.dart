@@ -17,13 +17,14 @@ class PetPage extends StatelessWidget {
       body: Center(
         child: RaisedButton(
           child: Text("Click me"),
-          onPressed: () {
+          onPressed: () async {
             print("click button in pet page....");
-            Navigator.of(context).push(
+            final result = await Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (context) => PetOverviewPage(),
+                builder: (context) => PetOverviewPage(name: "HHHHH"),
               ),
             );
+            print(result);
           },
         ),
       ),
