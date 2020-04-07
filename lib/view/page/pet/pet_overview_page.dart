@@ -1,3 +1,4 @@
+import 'package:cdd_mobile_frontend/view/page/pet/bill/bill_page.dart';
 import 'package:cdd_mobile_frontend/view/page/pet/diary/diary_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -230,6 +231,11 @@ class GridDashboard extends StatelessWidget {
           }),
           _creatGirdItem(Colors.orangeAccent, "总消费", "￥230", () {
             print("Tab cost");
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => BillPage(name: "pet_name"),
+              ),
+            );
           }),
           _creatGirdItem(Colors.purpleAccent, "铲屎官", "2", () {
             print("Tab person");
