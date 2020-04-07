@@ -46,7 +46,7 @@ class _PextWeightChartState extends State<PetWeightChart>{
                 color: const Color(0xff232d37)),
             child: Padding(
               padding: const EdgeInsets.only(right: 18.0, left: 12.0, top: 24, bottom: 12),
-              child: showAvg ? MainLineChart(minx: minx,maxx: maxx,miny: miny,maxy: maxy) : AverageLineChart(minx: minx,maxx: maxx,miny: miny,maxy: maxy),
+              child: showAvg ? AverageLineChart(minx: minx,maxx: maxx,miny: miny,maxy: maxy) : MainLineChart(minx: minx,maxx: maxx,miny: miny,maxy: maxy),
             ),
           ),
         ),
