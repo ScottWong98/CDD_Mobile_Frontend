@@ -3,6 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 
+import 'pet_overview_page.dart';
+
 var pets = [
   {'name': '土师', 'type': '狗', 'age': 5, 'description': 'golden dog'},
   {'name': '唐共力', 'type': '狗', 'age': 5, 'description': 'golden dog'},
@@ -150,10 +152,16 @@ class _PetPageState extends State<PetPage> {
                                     print("$index");
                                     debugPrint("index:$index");
                                   },
-                                  onTap: (index) {
+                                  onTap: (index) async {
                                     //TODO 2020.3.4.zth modify function to [open new pet page]
                                     var nowname = (pets[index])['name'];
                                     debugPrint("点击了第:$index个 它叫$nowname");
+                                    final result = await Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                        builder: (context) => PetOverviewPage(name: "HHHHH"),
+                                      ),
+                                    );
+                                    print(result);
                                   },
                                   pagination: SwiperPagination(
                                     alignment: Alignment.bottomCenter,

@@ -31,8 +31,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: "Cat Dog Diary",
       routes:{
-        "homepage": (context) => TabNavigator(),
-        "add_pet_page":(context) => AddPetPage(),
+        "homepage":         (context) => TabNavigator(),
+        "add_pet_page":     (context) => AddPetPage(),
       },
       initialRoute: "homepage",
     );
