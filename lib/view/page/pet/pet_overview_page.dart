@@ -3,6 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
+import 'weight/weight_page.dart';
+
 class PetOverviewPage extends StatefulWidget {
   final String name;
   PetOverviewPage({Key key, this.name}) : super(key: key);
@@ -210,7 +212,13 @@ class GridDashboard extends StatelessWidget {
         ],
         children: <Widget>[
           _creatGirdItem(Colors.pinkAccent, "体重", "32kg", () {
+            //TODO 2020.4.7.zth need to change the [parameter of function]
             print("Tab Weight");
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => WeightPage(name: "pet_name"),
+              ),
+            );
           }),
           _creatGirdItem(Colors.redAccent, "日记", "20", () {
             print("Tab diary");

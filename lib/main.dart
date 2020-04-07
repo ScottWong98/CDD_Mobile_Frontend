@@ -9,6 +9,7 @@ import 'package:flutter/services.dart';
 import 'view/page/community/community_page.dart';
 import 'view/page/pet/pet_overview_page.dart';
 import 'view/page/pet/pet_page.dart';
+import 'view/page/pet/weight/weight_page.dart';
 import 'view/page/user/user_page.dart';
 import 'view/page/wiki/wiki_page.dart';
 
