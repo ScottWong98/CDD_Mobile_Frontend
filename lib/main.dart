@@ -1,9 +1,16 @@
 import 'dart:io';
 
+import 'package:cdd_mobile_frontend/view/page/pet/add_pet_page.dart';
 import 'package:cdd_mobile_frontend/view/page/tab_navigator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+import 'view/page/community/community_page.dart';
+import 'view/page/pet/pet_overview_page.dart';
+import 'view/page/pet/pet_page.dart';
+import 'view/page/user/user_page.dart';
+import 'view/page/wiki/wiki_page.dart';
 
 main() {
   runApp(MyApp());
@@ -23,7 +30,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Cat Dog Diary",
-      home: TabNavigator(),
+      routes:{
+        "homepage": (context) => TabNavigator(),
+        "add_pet_page":(context) => AddPetPage(),
+      },
+      initialRoute: "homepage",
     );
   }
 }
