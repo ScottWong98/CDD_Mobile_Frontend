@@ -1,3 +1,4 @@
+import 'package:cdd_mobile_frontend/view/widget/bottom_clipper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -7,13 +8,41 @@ class UserPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(123, 104, 238, 1),
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-      ),
-      body: Center(
-        child: Text("User Page"),
+      backgroundColor: Colors.white,
+      body: CustomScrollView(
+        slivers: <Widget>[
+          SliverAppBar(
+            backgroundColor: Colors.white,
+            expandedHeight: 200 + MediaQuery.of(context).padding.top,
+            flexibleSpace: ClipPath(
+              clipper: BottomClipper(),
+              child: Container(
+                // child: FlexibleSpaceBar(
+                //   title: Text("demo"),
+                // ),
+                color: Colors.orangeAccent,
+              ),
+            ),
+            pinned: true,
+          ),
+          SliverList(
+            delegate: SliverChildListDelegate([
+              Container(
+                decoration: BoxDecoration(
+                  // borderRadius: BorderRadius.circular(10),
+                  gradient: LinearGradient(
+                      colors: [Colors.blue[300], Colors.blueAccent],
+                      begin: Alignment.centerLeft,
+                      end: Alignment.centerRight),
+                ),
+                width: MediaQuery.of(context).size.width,
+              ),
+            ]),
+          ),
+          // Center(
+          //   child: Text("Hello"),
+          // )
+        ],
       ),
     );
   }
