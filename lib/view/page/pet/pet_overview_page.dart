@@ -1,7 +1,10 @@
+import 'package:cdd_mobile_frontend/view/page/pet/bill/bill_page.dart';
 import 'package:cdd_mobile_frontend/view/page/pet/diary/diary_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+
+import 'weight/weight_page.dart';
 
 class PetOverviewPage extends StatefulWidget {
   final String name;
@@ -210,7 +213,13 @@ class GridDashboard extends StatelessWidget {
         ],
         children: <Widget>[
           _creatGirdItem(Colors.pinkAccent, "体重", "32kg", () {
+            //TODO 2020.4.7.zth need to change the [parameter of function]
             print("Tab Weight");
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => WeightPage(name: "pet_name"),
+              ),
+            );
           }),
           _creatGirdItem(Colors.redAccent, "日记", "20", () {
             print("Tab diary");
@@ -222,6 +231,11 @@ class GridDashboard extends StatelessWidget {
           }),
           _creatGirdItem(Colors.orangeAccent, "总消费", "￥230", () {
             print("Tab cost");
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => BillPage(name: "pet_name"),
+              ),
+            );
           }),
           _creatGirdItem(Colors.purpleAccent, "铲屎官", "2", () {
             print("Tab person");
