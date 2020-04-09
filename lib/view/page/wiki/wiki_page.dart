@@ -1,3 +1,4 @@
+import 'package:cdd_mobile_frontend/view/widget/chart.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -7,13 +8,12 @@ class WikiPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(123, 104, 238, 1),
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
+        title: Text("hello"),
       ),
-      body: Center(
-        child: Text("Wiki Page"),
+      body: Container(
+        child: CustomChart.withSampleData(),
+        height: MediaQuery.of(context).size.height * 0.5,
       ),
     );
   }

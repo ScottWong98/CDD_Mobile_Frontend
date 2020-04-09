@@ -1,3 +1,4 @@
+import 'package:cdd_mobile_frontend/utils/format_date.dart';
 import 'package:cdd_mobile_frontend/view_model/user_view_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +26,7 @@ class _PetBoardState extends State<PetBoard> {
     final _userVM = Provider.of<UserViewModel>(context);
     return DecoratedBox(
       decoration: BoxDecoration(
-          color: widget.boardColors[widget.index],
+          color: widget.boardColors[widget.index % widget.boardColors.length],
           borderRadius: BorderRadius.circular(15.0)),
       child: Flex(
         direction: Axis.vertical,
@@ -126,7 +127,9 @@ class _PetBoardState extends State<PetBoard> {
               child: Center(
                   child: Align(
                 alignment: Alignment.topCenter,
-                child: Text(_userVM.pets[widget.index].createTime.toString(),
+                child: Text(
+                    FormatDate.getTimeInYMD(
+                        _userVM.pets[widget.index].createTime),
                     style: TextStyle(
                       fontSize: h / 52,
                       fontWeight: FontWeight.bold,

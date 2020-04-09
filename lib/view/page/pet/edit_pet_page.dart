@@ -25,6 +25,7 @@ class _EditPetPageState extends State<EditPetPage> {
 
   @override
   Widget build(BuildContext context) {
+    final h = MediaQuery.of(context).size.height;
     return Consumer<UserViewModel>(
       builder: (context, userVM, child) {
         return Scaffold(
@@ -43,27 +44,58 @@ class _EditPetPageState extends State<EditPetPage> {
               ),
             ],
           ),
-          body: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 40),
-            child: Container(
-              margin: EdgeInsets.only(top: 40),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  TextField(
-                    controller: _nickNameController,
-                    decoration: InputDecoration(
-                      labelText: "NickName",
-                    ),
+          // body: Padding(
+          //   padding: const EdgeInsets.symmetric(horizontal: 40),
+          //   child: Container(
+          //     margin: EdgeInsets.only(top: 40),
+          //     child: Column(
+          //       crossAxisAlignment: CrossAxisAlignment.center,
+          //       children: <Widget>[
+          //         TextField(
+          //           controller: _nickNameController,
+          //           decoration: InputDecoration(
+          //             labelText: "NickName",
+          //           ),
+          //         ),
+          //         TextField(
+          //           controller: _introController,
+          //           decoration: InputDecoration(
+          //             labelText: "Introduction",
+          //           ),
+          //         ),
+          //       ],
+          //     ),
+          //   ),
+          // ),
+          body: Container(
+            padding: const EdgeInsets.all(16.0),
+            child: new Column(
+              children: <Widget>[
+                new TextFormField(
+                  decoration: new InputDecoration(
+                    icon: Icon(Icons.pets),
+                    labelText: '宠物名称',
                   ),
-                  TextField(
-                    controller: _introController,
-                    decoration: InputDecoration(
-                      labelText: "Introduction",
-                    ),
-                  ),
-                ],
-              ),
+                  onSaved: (val) {
+                    _nickNameController.text = val;
+                  },
+                  validator: (val) {
+                    return val.length > 0 ? null : "名称不能为空";
+                  },
+                  controller: _nickNameController,
+                ),
+                SizedBox(
+                  height: h / 30,
+                ),
+                TextFormField(
+                  decoration: new InputDecoration(
+                      labelText: '宠物描述', icon: Icon(Icons.description)),
+                  onSaved: (val) {
+                    _introController.text = val;
+                  },
+                  controller: _introController,
+                ),
+              ],
             ),
           ),
         );

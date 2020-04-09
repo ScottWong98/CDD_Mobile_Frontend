@@ -56,7 +56,10 @@ class MyRowFirst extends StatelessWidget {
               height: 100.0,
               //color: Colors.lightGreenAccent,
               child: ClipOval(
-                child: Image.network(userVM.user.avatar),
+                child: Image.network(
+                  userVM.user.avatar,
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
             Column(

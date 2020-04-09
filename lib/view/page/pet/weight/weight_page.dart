@@ -2,10 +2,12 @@ import 'package:cdd_mobile_frontend/utils/format_date.dart';
 import 'package:cdd_mobile_frontend/view/page/pet/weight/add_weight_page.dart';
 import 'package:cdd_mobile_frontend/view/page/pet/weight/pet_weight_chart.dart';
 import 'package:cdd_mobile_frontend/view/page/pet/weight/show_weight_page.dart';
+import 'package:cdd_mobile_frontend/view/widget/chart.dart';
 import 'package:cdd_mobile_frontend/view_model/weight_view_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:cdd_mobile_frontend/utils/generate_chart_data.dart';
 
 final List<Color> colorList = [
   Colors.greenAccent,
@@ -66,7 +68,8 @@ class _WeightPageState extends State<WeightPage> {
               children: <Widget>[
                 Container(
                   height: MediaQuery.of(context).size.height / 3,
-                  color: Colors.blueAccent,
+                  // color: Colors.blueAccent,
+                  child: CustomChart(createWeightData(_weightVM.weights)),
                 ),
                 SizedBox(
                   height: 20,

@@ -1,10 +1,12 @@
 import 'package:cdd_mobile_frontend/utils/format_date.dart';
 import 'package:cdd_mobile_frontend/view/page/pet/bill/add_bill_page.dart';
 import 'package:cdd_mobile_frontend/view/page/pet/bill/show_bill_page.dart';
+import 'package:cdd_mobile_frontend/view/widget/chart.dart';
 import 'package:cdd_mobile_frontend/view_model/cost_view_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:cdd_mobile_frontend/utils/generate_chart_data.dart';
 
 final List<Color> colorList = [
   Colors.greenAccent,
@@ -64,7 +66,8 @@ class _BillPageState extends State<BillPage> {
               children: <Widget>[
                 Container(
                   height: MediaQuery.of(context).size.height / 3,
-                  color: Colors.blueAccent,
+                  // color: Colors.blueAccent,
+                  child: CustomChart(createCostData(_costVM.costs)),
                 ),
                 SizedBox(
                   height: 20,

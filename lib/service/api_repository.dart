@@ -102,4 +102,9 @@ class APIRepository {
   static Future<Response> updateCost(var data) async {
     return await dio.put("/cost", data: data);
   }
+
+  // 获取所有相片
+  static Future<Response> getAllPhotos(var params) async {
+    return await dio.get("/photo", queryParameters: params);
+  }
 }
