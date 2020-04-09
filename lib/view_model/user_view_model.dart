@@ -32,6 +32,17 @@ class UserViewModel extends ViewStateModel {
     return true;
   }
 
+  // 重新获取宠物列表
+  Future<bool> getAllPets() async {
+    var response = await APIRepository.getAllPets({
+      "user_id": _user.id,
+    });
+    var res = response.data["data"] as List;
+    _pets = res.map((item) => Pet.fromJson(item)).toList();
+    notifyListeners();
+    return true;
+  }
+
   // 添加宠物
   Future<bool> addPet(String nickName, String species, String introduction,
       DateTime createTime) async {

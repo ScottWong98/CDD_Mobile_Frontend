@@ -234,7 +234,10 @@ class GridDashboard extends StatelessWidget {
             print("Tab cost");
             Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (context) => BillPage(name: "pet_name"),
+                builder: (context) => BillPage(
+                  petId: userVM.pets[index].id,
+                  petIndex: index,
+                ),
               ),
             );
           }),

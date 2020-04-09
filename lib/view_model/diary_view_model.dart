@@ -37,7 +37,7 @@ class DiaryViewModel extends ViewStateModel {
     if (response.statusCode != 200) return false;
     // setIdle();
     Diary newDiary = Diary.fromJson(response.data['data']);
-    print(newDiary);
+    print(newDiary.id);
     diaries.insert(0, newDiary);
     notifyListeners();
     return true;
@@ -52,7 +52,8 @@ class DiaryViewModel extends ViewStateModel {
       createTime: diaries[diaryIndex].createTime,
       updateTime: diaries[diaryIndex].updateTime,
     );
-    var response = await APIRepository.updateDiary(diary);
+    print(diary.toJson());
+    var response = await APIRepository.updateDiary(diary.toJson());
     if (response.statusCode != 200) return false;
     diaries[diaryIndex] = diary;
     notifyListeners();

@@ -60,7 +60,7 @@ class APIRepository {
 
   // 更新日记信息
   static Future<Response> updateDiary(var data) async {
-    return await dio.put("/pet", data: data);
+    return await dio.put("/diary", data: data);
   }
 
   // 添加体重信息
@@ -71,5 +71,35 @@ class APIRepository {
   // 删除体重信息
   static Future<Response> deleteWeight(var data) async {
     return await dio.delete("/weight", data: data);
+  }
+
+  // 根据宠物ID获取所有体重信息
+  static Future<Response> getAllWeights(var params) async {
+    return await dio.get("/weight", queryParameters: params);
+  }
+
+  // 更新体重信息
+  static Future<Response> updateWeight(var data) async {
+    return await dio.put("/weight", data: data);
+  }
+
+  // 添加消费记录
+  static Future<Response> addCost(var data) async {
+    return await dio.post("/cost", data: data);
+  }
+
+  // 删除消费记录
+  static Future<Response> deleteCost(var data) async {
+    return await dio.delete("/cost", data: data);
+  }
+
+  // 根据宠物Id获取所有消费记录
+  static Future<Response> getAllCosts(var params) async {
+    return await dio.get("/cost", queryParameters: params);
+  }
+
+  // 更新消费信息
+  static Future<Response> updateCost(var data) async {
+    return await dio.put("/cost", data: data);
   }
 }

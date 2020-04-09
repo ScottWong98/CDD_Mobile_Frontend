@@ -1,3 +1,4 @@
+import 'package:cdd_mobile_frontend/view_model/cost_view_model.dart';
 import 'package:cdd_mobile_frontend/view_model/diary_view_model.dart';
 import 'package:cdd_mobile_frontend/view_model/user_view_model.dart';
 import 'package:provider/provider.dart';
@@ -9,5 +10,8 @@ List<SingleChildWidget> providers = [
   ),
   ChangeNotifierProvider(
     create: (context) => DiaryViewModel(),
+  ),
+  ChangeNotifierProvider(
+    create: (context) => CostViewModel(),
   ),
 ];
