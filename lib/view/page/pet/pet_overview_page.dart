@@ -1,5 +1,6 @@
 import 'package:cdd_mobile_frontend/view/page/pet/bill/bill_page.dart';
 import 'package:cdd_mobile_frontend/view/page/pet/diary/diary_page.dart';
+import 'package:cdd_mobile_frontend/view/page/pet/edit_pet_page.dart';
 import 'package:cdd_mobile_frontend/view_model/user_view_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -90,22 +91,18 @@ class _PetOverviewPageState extends State<PetOverviewPage> {
                             ),
                           ),
                           IconButton(
-                            icon: Icon(Icons.settings),
+                            icon: Icon(Icons.edit),
                             color: Colors.white,
                             onPressed: () {
-                              showDialog(
-                                context: context,
-                                builder: (context) => AlertDialog(
-                                  title: Text("提示"),
-                                  content: Text("这是设置按钮"),
-                                  actions: <Widget>[
-                                    FlatButton(
-                                      onPressed: () {
-                                        Navigator.of(context).pop();
-                                      },
-                                      child: Text('确认'),
-                                    ),
-                                  ],
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) => EditPetPage(
+                                    petIndex: widget.index,
+                                    nickName:
+                                        userVM.pets[widget.index].nickName,
+                                    introduction:
+                                        userVM.pets[widget.index].introduction,
+                                  ),
                                 ),
                               );
                             },
@@ -171,18 +168,9 @@ class _PetOverviewPageState extends State<PetOverviewPage> {
                         )
                       ],
                     ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        // Text(
-                        //   "H",
-                        //   style: TextStyle(
-                        //     fontSize: 26,
-                        //     color: Colors.white,
-                        //   ),
-                        // ),
-                      ],
+                    child: Image.network(
+                      userVM.pets[widget.index].avatar,
+                      fit: BoxFit.cover,
                     ),
                   ),
                 ],

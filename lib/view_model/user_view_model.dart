@@ -67,6 +67,17 @@ class UserViewModel extends ViewStateModel {
     return true;
   }
 
+  Future<bool> updatePetInfo(
+      int index, String nickName, String introduction) async {
+    Pet pet = pets[index];
+    pet.nickName = nickName;
+    pet.introduction = introduction;
+    var response = await APIRepository.updatePetInfo(pet.toJson());
+    if (response.statusCode != 200) return false;
+    notifyListeners();
+    return true;
+  }
+
   // 宠物日记
   changeDiaryNumber(int petIndex, int value) async {
     pets[petIndex].diaryNumber += value;
