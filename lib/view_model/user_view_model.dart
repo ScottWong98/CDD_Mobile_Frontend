@@ -66,4 +66,10 @@ class UserViewModel extends ViewStateModel {
     notifyListeners();
     return true;
   }
+
+  // 宠物日记
+  changeDiaryNumber(int petIndex, int value) async {
+    pets[petIndex].diaryNumber += value;
+    notifyListeners();
+  }
 }

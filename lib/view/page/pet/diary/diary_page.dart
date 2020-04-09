@@ -16,10 +16,11 @@ final List<Color> colorList = [
 ];
 
 class DiaryPage extends StatefulWidget {
+  final petIndex;
   final petName;
   final petId;
   final petAvatar;
-  DiaryPage({Key key, this.petName, this.petId, this.petAvatar})
+  DiaryPage({Key key, this.petIndex, this.petName, this.petId, this.petAvatar})
       : super(key: key);
 
   @override
@@ -59,7 +60,10 @@ class _DiaryPageState extends State<DiaryPage> {
                       onPressed: () {
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (context) => AddDiaryPage(),
+                            builder: (context) => AddDiaryPage(
+                              petIndex: widget.petIndex,
+                              petId: widget.petId,
+                            ),
                           ),
                         );
                       },
@@ -90,6 +94,8 @@ class _DiaryPageState extends State<DiaryPage> {
                           Navigator.of(context).push(
                             MaterialPageRoute(
                               builder: (context) => ShowDiaryPage(
+                                petId: widget.petId,
+                                petIndex: widget.petIndex,
                                 index: index,
                                 color: colorList[index % colorList.length],
                               ),

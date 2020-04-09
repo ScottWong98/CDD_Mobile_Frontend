@@ -1,17 +1,24 @@
 import 'package:cdd_mobile_frontend/utils/format_date.dart';
+import 'package:cdd_mobile_frontend/view/page/pet/diary/edit_diary_page.dart';
 import 'package:cdd_mobile_frontend/view_model/diary_view_model.dart';
+import 'package:cdd_mobile_frontend/view_model/user_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class ShowDiaryPage extends StatelessWidget {
-  final index, color;
-  const ShowDiaryPage({Key key, this.index, this.color = Colors.greenAccent})
+  final index, color, petId, petIndex;
+  const ShowDiaryPage(
+      {Key key,
+      this.petId,
+      this.petIndex,
+      this.index,
+      this.color = Colors.greenAccent})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<DiaryViewModel>(
-      builder: (context, diaryVM, child) {
+    return Consumer2<DiaryViewModel, UserViewModel>(
+      builder: (context, diaryVM, userVM, child) {
         final _diary = diaryVM.diaries[index];
         return Scaffold(
           body: CustomScrollView(
@@ -27,8 +34,29 @@ class ShowDiaryPage extends StatelessWidget {
                 ),
                 actions: <Widget>[
                   IconButton(
+                    icon: Icon(Icons.delete),
+                    onPressed: () async {
+                      var response = await diaryVM.deleteDiary(index, petId);
+                      if (response == true) {
+                        await userVM.changeDiaryNumber(petIndex, -1);
+                        Navigator.of(context).pop();
+                      }
+                    },
+                  ),
+                  IconButton(
                     icon: Icon(Icons.edit),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => EditDiaryPage(
+                            diaryIndex: index,
+                            petId: petId,
+                            title: _diary.title,
+                            content: _diary.content,
+                          ),
+                        ),
+                      );
+                    },
                   ),
                 ],
                 flexibleSpace: Container(

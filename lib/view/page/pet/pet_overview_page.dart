@@ -232,6 +232,7 @@ class GridDashboard extends StatelessWidget {
             Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (context) => DiaryPage(
+                  petIndex: index,
                   petName: userVM.pets[index].nickName,
                   petId: userVM.pets[index].id,
                   petAvatar: userVM.pets[index].avatar,
