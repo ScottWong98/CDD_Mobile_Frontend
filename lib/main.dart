@@ -1,22 +1,18 @@
 import 'dart:io';
 
-import 'package:cdd_mobile_frontend/view/page/pet/add_pet_page.dart';
+import 'package:cdd_mobile_frontend/config/provider_manager.dart';
 import 'package:cdd_mobile_frontend/view/page/tab_navigator.dart';
+import 'package:cdd_mobile_frontend/view/page/welcome/splash_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
-import 'view/page/community/community_page.dart';
-import 'view/page/pet/pet_overview_page.dart';
-import 'view/page/pet/pet_page.dart';
-import 'view/page/pet/weight/weight_page.dart';
-import 'view/page/user/user_page.dart';
-import 'view/page/wiki/wiki_page.dart';
+import 'package:provider/provider.dart';
 
 main() {
   runApp(MyApp());
   if (Platform.isAndroid) {
-// 以下两行 设置android状态栏为透明的沉浸。写在组件渲染之后，是为了在渲染后进行set赋值，覆盖状态栏，写在渲染之前MaterialApp组件会覆盖掉这个值。
+    // 以下两行 设置android状态栏为透明的沉浸。
+    // 写在组件渲染之后，是为了在渲染后进行set赋值，覆盖状态栏，写在渲染之前MaterialApp组件会覆盖掉这个值。
     SystemUiOverlayStyle systemUiOverlayStyle =
         SystemUiOverlayStyle(statusBarColor: Colors.transparent);
     SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
@@ -28,14 +24,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: "Cat Dog Diary",
-      routes:{
-        "homepage":         (context) => TabNavigator(),
-        "add_pet_page":     (context) => AddPetPage(),
-      },
-      initialRoute: "homepage",
+    return MultiProvider(
+      providers: providers,
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: "Cat Dog Diary",
+        routes: {
+          "/": (context) => SplashPage(),
+          "homePage": (context) => TabNavigator(),
+        },
+        initialRoute: "/",
+      ),
     );
   }
 }
