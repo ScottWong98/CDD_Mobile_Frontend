@@ -1,50 +1,43 @@
 import 'package:cdd_mobile_frontend/utils/format_date.dart';
 import 'package:cdd_mobile_frontend/view_model/cost_view_model.dart';
 import 'package:cdd_mobile_frontend/view_model/user_view_model.dart';
+import 'package:cdd_mobile_frontend/view_model/weight_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_picker/Picker.dart';
 import 'package:provider/provider.dart';
 
-class UpdateBillPage extends StatefulWidget {
-  final petId, petIndex, costIndex;
-  final oldContent, oldValue, oldDate;
-  const UpdateBillPage(
-      {Key key,
-      this.petId,
-      this.petIndex,
-      this.costIndex,
-      this.oldDate,
-      this.oldContent,
-      this.oldValue})
-      : super(key: key);
+class UpdateWeightPage extends StatefulWidget {
+  final petId, petIndex, weightIndex;
+  final oldValue, oldDate;
+  const UpdateWeightPage({
+    Key key,
+    this.weightIndex,
+    this.petId,
+    this.petIndex,
+    this.oldDate,
+    this.oldValue,
+  }) : super(key: key);
 
   @override
-  _UpdateBillPageState createState() => _UpdateBillPageState();
+  _UpdateWeightPageState createState() => _UpdateWeightPageState();
 }
 
-class _UpdateBillPageState extends State<UpdateBillPage> {
-  final _costContentController = TextEditingController();
-  final _costValueController = TextEditingController();
-  var _costDate = FormatDate.getTimeInYMD(DateTime.now());
-  var _costDateFormat = DateTime.now();
+class _UpdateWeightPageState extends State<UpdateWeightPage> {
+  final _weightValueController = TextEditingController();
+  var _weightDate = FormatDate.getTimeInYMD(DateTime.now());
+  var _weightDateFormat = DateTime.now();
 
   @override
   void initState() {
-    _costContentController.text = widget.oldContent;
-    _costValueController.text = widget.oldValue;
-    _costDate = widget.oldDate;
-    _costDateFormat = DateTime.parse(_costDate);
-    print(_costDateFormat);
-    print(_costDate);
+    _weightValueController.text = widget.oldValue;
+    _weightDate = widget.oldDate;
+    _weightDateFormat = DateTime.parse(_weightDate);
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    print(_costDate);
-    print(_costContentController.text);
-    print(_costValueController.text);
     return SingleChildScrollView(
       child: Dialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
@@ -71,29 +64,23 @@ class _UpdateBillPageState extends State<UpdateBillPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Text(
-                    "更新账单",
+                    "更新体重",
                     style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
                   ),
                   SizedBox(
                     height: 10,
                   ),
-                  TextField(
-                    controller: _costContentController,
-                    decoration: InputDecoration(
-                      labelText: "消费去向",
-                    ),
-                  ),
                   SizedBox(
                     height: 10,
                   ),
                   TextField(
-                    controller: _costValueController,
+                    controller: _weightValueController,
                     inputFormatters: [
                       WhitelistingTextInputFormatter(RegExp("[0-9.]"))
                     ],
                     decoration: InputDecoration(
-                      prefixText: "￥",
-                      labelText: "消费金额",
+                      suffixText: "Kg",
+                      labelText: "体重值",
                     ),
                   ),
                   SizedBox(
@@ -104,7 +91,7 @@ class _UpdateBillPageState extends State<UpdateBillPage> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
                       Text(
-                        "消费日期:",
+                        "日期:",
                         style: TextStyle(fontSize: 16),
                       ),
                       SizedBox(
@@ -112,7 +99,7 @@ class _UpdateBillPageState extends State<UpdateBillPage> {
                       ),
                       FlatButton(
                         child: Text(
-                          _costDate,
+                          _weightDate,
                           style: TextStyle(fontSize: 17),
                         ),
                         onPressed: () {
@@ -123,10 +110,10 @@ class _UpdateBillPageState extends State<UpdateBillPage> {
                             selectedTextStyle: TextStyle(color: Colors.blue),
                             onConfirm: (Picker picker, List value) {
                               setState(() {
-                                _costDateFormat =
+                                _weightDateFormat =
                                     (picker.adapter as DateTimePickerAdapter)
                                         .value;
-                                _costDate = FormatDate.getTimeInYMD(
+                                _weightDate = FormatDate.getTimeInYMD(
                                     (picker.adapter as DateTimePickerAdapter)
                                         .value);
                               });
@@ -156,25 +143,15 @@ class _UpdateBillPageState extends State<UpdateBillPage> {
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20)),
                         ),
-                        Consumer2<CostViewModel, UserViewModel>(
-                          builder: (context, costVM, userVM, child) {
+                        Consumer2<WeightViewModel, UserViewModel>(
+                          builder: (context, weightVM, userVM, child) {
                             return RaisedButton(
                               onPressed: () async {
-                                print(widget.petId);
-                                print(_costContentController.text);
-                                print(_costValueController.text);
-                                print(_costDateFormat);
-                                // var status = await costVM.addCost(
-                                //     widget.petId,
-                                //     _costContentController.text,
-                                //     _costValueController.text,
-                                //     _costDateFormat);
-                                var status = await costVM.updateCost(
-                                    widget.costIndex,
+                                var status = await weightVM.updateWeight(
+                                    widget.weightIndex,
                                     widget.petId,
-                                    _costContentController.text,
-                                    _costValueController.text,
-                                    _costDateFormat);
+                                    _weightValueController.text,
+                                    _weightDateFormat);
                                 print(status);
                                 if (status == true) {
                                   await userVM.getAllPets();

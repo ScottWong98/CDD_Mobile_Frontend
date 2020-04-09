@@ -210,7 +210,10 @@ class GridDashboard extends StatelessWidget {
             print("Tab Weight");
             Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (context) => WeightPage(name: "pet_name"),
+                builder: (context) => WeightPage(
+                  petId: userVM.pets[index].id,
+                  petIndex: index,
+                ),
               ),
             );
           }),

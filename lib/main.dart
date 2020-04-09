@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:cdd_mobile_frontend/config/provider_manager.dart';
-import 'package:cdd_mobile_frontend/view/page/pet/add_pet_page.dart';
 import 'package:cdd_mobile_frontend/view/page/tab_navigator.dart';
 import 'package:cdd_mobile_frontend/view/page/welcome/splash_page.dart';
 import 'package:flutter/cupertino.dart';
