@@ -32,6 +32,16 @@ class UserViewModel extends ViewStateModel {
     return true;
   }
 
+  // 更新用户信息
+  Future<bool> updateUser(String nickName, String introduction) async {
+    user.nickName = nickName;
+    user.introduction = introduction;
+    var response = await APIRepository.updateUser(user.toJson());
+    if (response.statusCode != 200) return false;
+    notifyListeners();
+    return true;
+  }
+
   // 重新获取宠物列表
   Future<bool> getAllPets() async {
     var response = await APIRepository.getAllPets({
