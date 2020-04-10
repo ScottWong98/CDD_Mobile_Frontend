@@ -36,11 +36,33 @@ class ShowDiaryPage extends StatelessWidget {
                   IconButton(
                     icon: Icon(Icons.delete),
                     onPressed: () async {
-                      var response = await diaryVM.deleteDiary(index, petId);
-                      if (response == true) {
-                        await userVM.changeDiaryNumber(petIndex, -1);
-                        Navigator.of(context).pop();
-                      }
+                      showDialog(
+                        context: context,
+                        builder: (context) => AlertDialog(
+                          title: Text("提示"),
+                          content: Text("确定删除这篇日记吗？"),
+                          actions: <Widget>[
+                            FlatButton(
+                              onPressed: () async {
+                                var response =
+                                    await diaryVM.deleteDiary(index, petId);
+                                if (response == true) {
+                                  await userVM.changeDiaryNumber(petIndex, -1);
+                                  Navigator.of(context).pop();
+                                }
+                                Navigator.of(context).pop();
+                              },
+                              child: Text("确认"),
+                            ),
+                            FlatButton(
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                              child: Text("取消"),
+                            ),
+                          ],
+                        ),
+                      );
                     },
                   ),
                   IconButton(

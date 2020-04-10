@@ -10,7 +10,6 @@ class Systemsetting extends StatelessWidget {
           '系统设置',
         ),
         centerTitle: true,
-        backgroundColor: Colors.redAccent,
       ),
       body: Center(
         child: Text(

@@ -32,6 +32,27 @@ class UserViewModel extends ViewStateModel {
     return true;
   }
 
+  // 注册
+  Future<bool> register(
+      String account, String password, String nickName) async {
+    User user = User(
+      id: 0,
+      account: account,
+      password: password,
+      nickName: nickName,
+      gender: 0,
+      address: "Qingdao, China",
+      avatar:
+          "http://gss0.baidu.com/-vo3dSag_xI4khGko9WTAnF6hhy/wapiknow/wh=450,600/sign=86859c04f203918fd78435ce640d0aa1/9f510fb30f2442a73c913641d443ad4bd01302b3.jpg",
+      introduction: "you need to add an introduction",
+      petNumber: 0,
+    );
+    var response = await APIRepository.register(user.toJson());
+    if (response.statusCode != 200) return false;
+    // user = User.fromJson(response.data['data']);
+    return true;
+  }
+
   // 更新用户信息
   Future<bool> updateUser(String nickName, String introduction) async {
     user.nickName = nickName;
@@ -64,7 +85,7 @@ class UserViewModel extends ViewStateModel {
         createTime: createTime,
         avatar: species == "cat"
             ? "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2072494435,853546208&fm=26&gp=0.jpg"
-            : "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1586352534050&di=93dcb769a0a8c8e7670a29167a9ca6c9&imgtype=0&src=http%3A%2F%2Fn.sinaimg.cn%2Fsinacn07%2F788%2Fw500h288%2F20180522%2Fe9df-hawmaua4747221.jpg");
+            : "http://5b0988e595225.cdn.sohucs.com/images/20180310/52524f396f704b9a9bf636ce1e72bfbe.jpeg");
     var response = await APIRepository.addPet(pet.toJson());
     print(response.statusCode);
     _user.petNumber++;

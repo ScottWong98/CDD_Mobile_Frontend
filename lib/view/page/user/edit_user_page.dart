@@ -4,9 +4,8 @@ import 'package:provider/provider.dart';
 import 'user_page.dart';
 
 class Edituser extends StatefulWidget {
-  final userId, nickName, introduction;
-  Edituser({Key key, this.userId, this.nickName, this.introduction})
-      : super(key: key);
+  final nickName, introduction;
+  Edituser({Key key, this.nickName, this.introduction}) : super(key: key);
 
   @override
   _EdituserState createState() => _EdituserState();
