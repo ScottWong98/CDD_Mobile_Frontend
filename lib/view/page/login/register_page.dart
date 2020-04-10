@@ -2,28 +2,26 @@ import 'package:cdd_mobile_frontend/view_model/user_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class LoginPage extends StatefulWidget {
-  LoginPage({Key key, @required this.screenH, @required this.screenW})
+class RegisterPage extends StatefulWidget {
+  RegisterPage({Key key, @required this.screenH, @required this.screenW})
       : super(key: key);
   final screenH;
   final screenW;
   @override
-  _LoginPageState createState() => _LoginPageState();
+  _RegisterPageState createState() => _RegisterPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
-    final h = widget.screenH;
-    final w = widget.screenW;
+    var h = widget.screenH;
+    var w = widget.screenW;
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
-          height: h,
+          height: (h + h / 4),
           decoration: BoxDecoration(
             gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
               colors: [Colors.indigo, Colors.blue[600], Colors.indigo],
             ),
           ),
@@ -84,13 +82,14 @@ class BoxWidget extends StatefulWidget {
 }
 
 class _BoxWidgetState extends State<BoxWidget> {
-  TextEditingController _unameController = new TextEditingController();
-  TextEditingController _pwdController = new TextEditingController();
+  final _unameController = new TextEditingController();
+  final _pwdController = new TextEditingController();
+  final _pwdConfirmController = new TextEditingController();
+  final _nickNameController = new TextEditingController();
   GlobalKey _formKey = new GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    final w = widget.w;
-    final h = widget.h;
+    final w = widget.w, h = widget.h;
     return Consumer<UserViewModel>(
       builder: (context, userVM, child) {
         return DecoratedBox(
@@ -100,11 +99,11 @@ class _BoxWidgetState extends State<BoxWidget> {
                 BorderRadius.vertical(top: Radius.elliptical(w / 7, w / 7)),
           ),
           child: SizedBox(
-            height: h - 3 * h / 8,
+            height: (h - h / 8),
             width: double.infinity,
             child: Padding(
               padding:
-                  const EdgeInsets.symmetric(vertical: 50.0, horizontal: 24.0),
+                  const EdgeInsets.symmetric(vertical: 20.0, horizontal: 24.0),
               child: Form(
                 key: _formKey,
                 autovalidate: true,
@@ -141,6 +140,9 @@ class _BoxWidgetState extends State<BoxWidget> {
                         return v.trim().length > 0 ? null : "用户名不能为空";
                       },
                     ),
+                    SizedBox(
+                      height: 20,
+                    ),
                     TextFormField(
                       controller: _pwdController,
                       decoration: InputDecoration(
@@ -152,14 +154,40 @@ class _BoxWidgetState extends State<BoxWidget> {
                         return v.trim().length > 5 ? null : "密码不能少于6位";
                       },
                     ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    TextFormField(
+                      controller: _pwdConfirmController,
+                      decoration: InputDecoration(
+                          labelText: "确认密码",
+                          hintText: "请输入密码",
+                          icon: Icon(Icons.lock_outline)),
+                      obscureText: true,
+                      validator: (v) {
+                        return v == _pwdController.text ? null : "与密码不同";
+                      },
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    TextFormField(
+                      controller: _nickNameController,
+                      decoration: InputDecoration(
+                          labelText: "昵称", icon: Icon(Icons.person_outline)),
+                      // obscureText: true,
+                      validator: (v) {
+                        return v == _nickNameController.text ? null : "昵称不能为空";
+                      },
+                    ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 28.0),
+                      padding: const EdgeInsets.only(top: 60.0),
                       child: Row(
                         children: <Widget>[
                           Expanded(
                             child: RaisedButton(
                               padding: EdgeInsets.all(15.0),
-                              child: Text("登陆"),
+                              child: Text("注册"),
                               color: Theme.of(context).primaryColor,
                               textColor: Colors.white,
                               onPressed: () async {
@@ -168,13 +196,14 @@ class _BoxWidgetState extends State<BoxWidget> {
                                   print("验证通过 提交数据");
                                   print("用户名：${_unameController.text}");
                                   print("密码：${_pwdController.text}");
-                                  var status = await userVM.login(
+                                  print("昵称：${_nickNameController.text}");
+                                  var status = await userVM.register(
                                       _unameController.text,
-                                      _pwdController.text);
-                                  if (status == true) {
+                                      _pwdController.text,
+                                      _nickNameController.text);
+                                  if (status == true)
                                     Navigator.of(context)
-                                        .pushReplacementNamed("homePage");
-                                  }
+                                        .pushReplacementNamed("/");
                                 } else {
                                   print("验证不通过");
                                 }
