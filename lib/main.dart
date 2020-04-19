@@ -1,6 +1,11 @@
 import 'dart:io';
 
 import 'package:cdd_mobile_frontend/config/provider_manager.dart';
+import 'package:cdd_mobile_frontend/view/demo/dump.dart';
+import 'package:cdd_mobile_frontend/view/demo/edit_user_page.dart';
+import 'package:cdd_mobile_frontend/view/demo/pet_page.dart';
+import 'package:cdd_mobile_frontend/view/demo/register_page.dart';
+import 'package:cdd_mobile_frontend/view/demo/user_page.dart';
 import 'package:cdd_mobile_frontend/view/page/tab_navigator.dart';
 import 'package:cdd_mobile_frontend/view/page/welcome/splash_page.dart';
 import 'package:flutter/cupertino.dart';
@@ -30,10 +35,13 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: "Cat Dog Diary",
         routes: {
-          "/": (context) => SplashPage(),
-          "homePage": (context) => TabNavigator(),
+          "/dump": (context) => LoginPage(),
+          "/register": (context) => RegisterPage(),
+          "/user_page": (context) => UserPage(),
+          "/edit_user_page": (context) => EditUserPage(),
+          "/pet_page": (context) => PetPage(),
         },
-        initialRoute: "/",
+        initialRoute: "/pet_page",
       ),
     );
   }

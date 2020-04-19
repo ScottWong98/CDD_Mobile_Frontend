@@ -1,4 +1,4 @@
-import 'package:cdd_mobile_frontend/utils/format_date.dart';
+import 'package:cdd_mobile_frontend/util/format_date.dart';
 import 'package:cdd_mobile_frontend/view/page/pet/diary/add_diary_page.dart';
 import 'package:cdd_mobile_frontend/view/page/pet/diary/show_diary_page.dart';
 import 'package:cdd_mobile_frontend/view_model/diary_view_model.dart';

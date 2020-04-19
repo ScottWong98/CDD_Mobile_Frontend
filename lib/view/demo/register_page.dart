@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class LoginPage extends StatefulWidget {
-  LoginPage({Key key}) : super(key: key);
+class RegisterPage extends StatefulWidget {
+  RegisterPage({Key key}) : super(key: key);
 
   @override
-  _LoginPageState createState() => _LoginPageState();
+  _RegisterPageState createState() => _RegisterPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,7 +52,7 @@ class _LoginPageState extends State<LoginPage> {
               child: Column(
                 children: <Widget>[
                   Container(
-                    height: 340,
+                    // height: MediaQuery.of(context).size.height * 2 / 3 - 50,
                     width: double.infinity,
                     decoration: BoxDecoration(
                       color: Colors.white,
@@ -72,9 +72,9 @@ class _LoginPageState extends State<LoginPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Text(
-                            "Login",
+                            "Register",
                             style: GoogleFonts.kalam(
-                              fontSize: 36,
+                              fontSize: 32,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -83,7 +83,7 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                           TextFormField(
                             decoration: InputDecoration(
-                                labelText: "账号",
+                                hintText: "账号",
                                 prefixIcon: Icon(Icons.account_circle)),
                           ),
                           SizedBox(
@@ -99,81 +99,66 @@ class _LoginPageState extends State<LoginPage> {
                           SizedBox(
                             height: 10,
                           ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: <Widget>[
-                              FlatButton(
-                                onPressed: () {
-                                  print("press button");
-                                },
-                                highlightColor: Colors.transparent,
-                                splashColor: Colors.transparent,
-                                child: Text(
-                                  "忘记密码？",
-                                  style: TextStyle(color: Color(0xcc0062d4)),
-                                ),
-                              ),
-                            ],
+                          TextFormField(
+                            obscureText: true,
+                            decoration: InputDecoration(
+                              labelText: "重复密码",
+                              prefixIcon: Icon(Icons.lock),
+                            ),
                           ),
                           SizedBox(
-                            height: 10,
+                            height: 20,
                           ),
-                          SizedBox(
-                            width: double.infinity,
-                            height: 45,
-                            child: Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 10),
-                              child: RaisedButton(
-                                onPressed: () {},
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                left: 25, right: 25, bottom: 10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                SizedBox(
+                                  height: 40,
+                                  child: RaisedButton(
+                                    onPressed: () {},
+                                    color: Colors.grey,
+                                    child: Text(
+                                      "取消",
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize: 16),
+                                    ),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(20),
+                                    ),
+                                  ),
                                 ),
-                                color: Colors.blue,
-                                child: Text(
-                                  "登录",
-                                  style: TextStyle(
-                                      fontSize: 18, color: Colors.white),
+                                SizedBox(
+                                  height: 40,
+                                  child: RaisedButton(
+                                    onPressed: () {},
+                                    color: Colors.blue,
+                                    child: Text(
+                                      "注册",
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(20),
+                                    ),
+                                  ),
                                 ),
-                              ),
+                              ],
                             ),
                           ),
                         ],
                       ),
                     ),
                   ),
-                  SizedBox(
-                    height: 40,
-                  ),
-                  // Row(
-                  //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  //   children: <Widget>[
-                  //     CircleAvatar(),
-                  //     CircleAvatar(),
-                  //     CircleAvatar(),
-                  //     CircleAvatar(),
-                  //   ],
-                  // ),
-                  // SizedBox(
-                  //   height: 10,
-                  // ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      Text("没有账号?"),
-                      FlatButton(
-                        onPressed: () {},
-                        highlightColor: Colors.transparent,
-                        splashColor: Colors.transparent,
-                        child: Text(
-                          "立即注册 >",
-                          style: TextStyle(color: Colors.blue),
-                        ),
-                      ),
-                    ],
-                  ),
                 ],
               ),
+            ),
+            SizedBox(
+              height: 40,
             ),
           ],
         ),

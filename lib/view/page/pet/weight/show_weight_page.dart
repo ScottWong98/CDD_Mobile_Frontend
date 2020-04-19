@@ -1,4 +1,4 @@
-import 'package:cdd_mobile_frontend/utils/format_date.dart';
+import 'package:cdd_mobile_frontend/util/format_date.dart';
 import 'package:cdd_mobile_frontend/view/page/pet/bill/update_bill_page.dart';
 import 'package:cdd_mobile_frontend/view/page/pet/weight/update_weight_page.dart';
 import 'package:cdd_mobile_frontend/view_model/cost_view_model.dart';

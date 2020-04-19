@@ -1,4 +1,4 @@
-import 'package:cdd_mobile_frontend/utils/format_date.dart';
+import 'package:cdd_mobile_frontend/util/format_date.dart';
 import 'package:cdd_mobile_frontend/view_model/user_view_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
